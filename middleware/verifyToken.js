@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken");
 function verifyTokenAdmin(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader;
-  console.log("HI");
   if (token == null) return res.sendStatus(401);
 
   jwt.verify(token, process.env.SECRET_TOKEN_ADMIN, (err, user) => {
