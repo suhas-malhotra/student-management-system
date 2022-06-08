@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+//middleware for admin token
 function verifyTokenAdmin(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader;
@@ -10,7 +11,7 @@ function verifyTokenAdmin(req, res, next) {
     next();
   });
 }
-
+//middleware for student token
 function verifyTokenStudent(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader;
@@ -24,6 +25,7 @@ function verifyTokenStudent(req, res, next) {
   });
 }
 
+//middleware for teacher token
 function verifyTokenTeacher(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader;

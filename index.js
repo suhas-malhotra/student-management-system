@@ -17,7 +17,7 @@ app.use("/", require("./routes"));
 app.get("/", (req, res) => {
   return res.status(200).json({ working: true });
 });
-
+//Incase of Invalid route
 app.get("/*", (req, res) => {
   return res.status(401).json({ message: "Route does not exist :(" });
 });
@@ -25,7 +25,7 @@ app.get("/*", (req, res) => {
 
 
 const port = 80 || process.env.PORT;
-
+//Server
 app.listen(port, () => {
   console.log("Server started at port", port);
 });
