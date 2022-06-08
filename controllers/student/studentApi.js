@@ -20,11 +20,11 @@ module.exports.studentDetails = async (req, res) => {
   for (let i = 0; i < student[0].subjects.length; i++) {
     marks.push(student[0].subjects[i].marks);
   }
-//calculating the percentage
+  //calculating the percentage
   let sum = marks.reduce((a, b) => a + b, 0);
   let percentage = sum / marks.length;
 
   return res
-    .status(400)
+    .status(200)
     .json({ subjects: student[0].subjects, percentage: percentage });
 };

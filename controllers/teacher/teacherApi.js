@@ -24,7 +24,7 @@ module.exports.allStudents = async (req, res) => {
     students.push(classStudent[0].name);
   }
   students.sort();
-  return res.status(400).send(students);
+  return res.status(200).send(students);
 };
 
 //controller
@@ -35,7 +35,7 @@ module.exports.ranking = async (req, res) => {
   let assignedClass = await Class.find({
     teacher: teacherId,
   });
-   //if invalid teacher ID
+  //if invalid teacher ID
   if (assignedClass.length == 0) {
     return res.status(422).json({ msg: "Class Not Assigned Yet" });
   }
@@ -58,9 +58,8 @@ module.exports.ranking = async (req, res) => {
   students.sort(function (a, b) {
     return a[1] - b[1];
   });
-  return res.status(400).send(students);
+  return res.status(200).send(students);
 };
-
 
 //controller
 //Adding perticular subject marks to a resp. student
@@ -80,7 +79,7 @@ module.exports.makeReport = async (req, res) => {
     _id: studentId,
   });
   //if invalid Student ID
-  if (assignedStudent.length == 0) {
+  if (assignedStudent.length === 0) {
     return res.status(401).json({ msg: "Invalid Student Id" });
   }
   const { subject, marks, date, comments } = req.body;
@@ -97,5 +96,5 @@ module.exports.makeReport = async (req, res) => {
       if (err) throw err;
     }
   );
-  return res.status(400).json({ msg: "Marks added Successfully" });
+  return res.status(200).json({ msg: "Marks added Successfully" });
 };

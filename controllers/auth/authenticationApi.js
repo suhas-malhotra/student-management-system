@@ -25,7 +25,7 @@ module.exports.Adminlogin = async (req, res) => {
   });
   admin.push({ token: token });
   admin[0].password = "";
-  return res.status(400).json(admin);
+  return res.status(200).json(admin);
 };
 //controller
 //student authentication
@@ -49,7 +49,7 @@ module.exports.Studentlogin = async (req, res) => {
   });
   student.push({ token: token });
   student[0].password = "";
-  return res.status(400).json(student);
+  return res.status(200).json(student);
 };
 //controller
 //teacher authentication
@@ -73,5 +73,5 @@ module.exports.Teacherlogin = async (req, res) => {
   });
   teacher.push({ token: token });
   teacher[0].password = "";
-  return res.status(400).json(teacher);
+  return res.status(200).json(teacher);
 };

@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 const SubjectsSchema = new Schema({
   subject: String,
   marks: Number,
-  date: Date,
+  date: String,
   comments: String,
   scoreCardDate: { type: Date, default: Date.now },
 });

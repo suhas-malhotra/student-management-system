@@ -29,7 +29,7 @@ module.exports.addTeacher = async (req, res) => {
       // If everything goes as planed
       //use the retured user document for something
       return res
-        .status(400)
+        .status(200)
         .json({ msg: "Teacher saved Successfully :)", id: response._id });
     })
     .catch((error) => {
@@ -43,13 +43,22 @@ module.exports.addTeacher = async (req, res) => {
 //by admin
 module.exports.deleteTeacher = async (req, res) => {
   const id = req.params.teacherId;
+
+  let alreadyAddedTeacher = await Teacher.find({
+    _id: id,
+  });
+  //if email already in use by any other teacher
+  if (alreadyAddedTeacher.length === 0) {
+    return res.status(404).json({ msg: "Teacher Not Found" });
+  }
+
   Teacher.deleteOne({ _id: id }, (err, obj) => {
     if (err)
       return res
         .status(422)
         .json({ msg: "Unable to find the teacher with given id" });
   });
-  return res.status(400).json({ msg: "Teacher deleted Successfully :)" });
+  return res.status(200).json({ msg: "Teacher deleted Successfully :)" });
 };
 
 //controller
@@ -60,7 +69,7 @@ module.exports.allTeacher = async (req, res) => {
     if (err) {
       res.status(404).send(err);
     } else {
-      res.status(400).send(result);
+      res.status(200).send(result);
     }
   });
 };
@@ -91,7 +100,7 @@ module.exports.addStudent = async (req, res) => {
       // If everything goes as planed
       //use the retured user document for something
       return res
-        .status(400)
+        .status(200)
         .json({ msg: "Student saved Successfully :)", id: response._id });
     })
     .catch((error) => {
@@ -111,7 +120,7 @@ module.exports.deleteStudent = async (req, res) => {
         .status(422)
         .json({ msg: "Unable to find the student with given id" });
   });
-  return res.status(400).json({ msg: "Student deleted Successfully :)" });
+  return res.status(200).json({ msg: "Student deleted Successfully :)" });
 };
 
 //controller
@@ -122,7 +131,7 @@ module.exports.allStudent = async (req, res) => {
     if (err) {
       res.status(404).send(err);
     } else {
-      res.status(400).send(result);
+      res.status(200).send(result);
     }
   });
 };
@@ -142,7 +151,7 @@ module.exports.addClass = async (req, res) => {
   });
   //if class name already in use
   if (alreadyAddedClass.length >= 1) {
-    return res.status(422).json({ msg: "Class Email already in use" });
+    return res.status(422).json({ msg: "Class Name already in use" });
   }
   //saving the class details in the database
   classDetails
@@ -151,7 +160,7 @@ module.exports.addClass = async (req, res) => {
       // If everything goes as planed
       //use the retured user document for something
       return res
-        .status(400)
+        .status(200)
         .json({ msg: "Class saved Successfully :)", classId: response._id });
     })
     .catch((error) => {
@@ -181,7 +190,7 @@ module.exports.addTeacherToClass = async (req, res) => {
   if (alreadyAddedTeacher.length == 0) {
     return res.status(404).json({ msg: "Teacher Not found" });
   }
-//adding teacher to the class
+  //adding teacher to the class
   Class.updateOne(
     { _id: classId },
     { $set: { teacher: teacherId } },
@@ -190,7 +199,7 @@ module.exports.addTeacherToClass = async (req, res) => {
     }
   );
 
-  return res.status(400).json({ msg: "Teacher added to class Successfully" });
+  return res.status(200).json({ msg: "Teacher added to class Successfully" });
 };
 
 //controller
@@ -222,5 +231,5 @@ module.exports.addStudentToClass = async (req, res) => {
       if (err) throw err;
     }
   );
-  return res.status(400).json({ msg: "Student added to class Successfully" });
+  return res.status(200).json({ msg: "Student added to class Successfully" });
 };
