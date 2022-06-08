@@ -1,8 +1,9 @@
 # student-management-system
 Commands to start the Server:-
+
     * npm i (Download the node modules files)
     * npm start (To start the server) 
-    
+    * make a .env file (Details of file addded below)     
 There are three types of profiles for accessing data:-
 1) Admin :-     
                 * For adding teachers , students , classes 
@@ -44,3 +45,10 @@ Routes:-
         1) GET /teacher/:teacherId/allstudents Displaying all students (sorted)
         2) GET /teacher/:teacherId/ranking Displaying all students based percentage ranking
         3) POST /teacher/:teacherId/student/:studentId/make/report Adding particular subject marks to the respective student
+
+.env file :-
+
+MONGO_URI = mongodb+srv://suhas:pooja0474@student.1jwxd0e.mongodb.net/?retryWrites=true&w=majority
+SECRET_TOKEN_TEACHER = jkcdhvbiuwofu23ry98r920r982370r82y3ru2309r23798hbjdk#VHVJH@KJ
+SECRET_TOKEN_ADMIN = jkcdhvbiuwofu23ry98r920r98kls;djchjgvh82y3ru2309r23798hbjdk#VHVJH@KJ
+SECRET_TOKEN_STUDENT = jkcdhvbiuwof0987r67t32gruvh2j3kbrkejofwheobijw309r23798hbjdk#VHVJH@KJ
