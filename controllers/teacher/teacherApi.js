@@ -13,7 +13,7 @@ module.exports.allStudents = async (req, res) => {
   });
   //if invalid teacher ID
   if (assignedClass.length == 0) {
-    return res.status(404).json({ msg: "Class Not Assigned Yet" });
+    return res.status(401).json({ msg: "Class Not Assigned Yet" });
   }
   let students = [];
   //adding all students of the respective teacher class
@@ -37,7 +37,7 @@ module.exports.ranking = async (req, res) => {
   });
    //if invalid teacher ID
   if (assignedClass.length == 0) {
-    return res.status(404).json({ msg: "Class Not Assigned Yet" });
+    return res.status(422).json({ msg: "Class Not Assigned Yet" });
   }
   let students = [];
   //adding all students of the respective teacher class with subject marks
@@ -73,7 +73,7 @@ module.exports.makeReport = async (req, res) => {
   });
   //if invalid teacher ID
   if (assignedClass.length == 0) {
-    return res.status(404).json({ msg: "Class Not Assigned Yet" });
+    return res.status(401).json({ msg: "Class Not Assigned Yet" });
   }
 
   let assignedStudent = await Student.find({
@@ -81,7 +81,7 @@ module.exports.makeReport = async (req, res) => {
   });
   //if invalid Student ID
   if (assignedStudent.length == 0) {
-    return res.status(404).json({ msg: "Invalid Student Id" });
+    return res.status(401).json({ msg: "Invalid Student Id" });
   }
   const { subject, marks, date, comments } = req.body;
   //If marks are entered >100

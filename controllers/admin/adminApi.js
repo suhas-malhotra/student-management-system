@@ -20,7 +20,7 @@ module.exports.addTeacher = async (req, res) => {
   });
   //if email already in use by any other teacher
   if (alreadyAddedTeacher.length >= 1) {
-    return res.status(401).json({ msg: "Teacher Email already in use" });
+    return res.status(422).json({ msg: "Teacher Email already in use" });
   }
   //saving teacher details in the database
   teacherDetails
@@ -46,7 +46,7 @@ module.exports.deleteTeacher = async (req, res) => {
   Teacher.deleteOne({ _id: id }, (err, obj) => {
     if (err)
       return res
-        .status(404)
+        .status(422)
         .json({ msg: "Unable to find the teacher with given id" });
   });
   return res.status(400).json({ msg: "Teacher deleted Successfully :)" });
@@ -82,7 +82,7 @@ module.exports.addStudent = async (req, res) => {
   });
   //if student email already in use
   if (alreadyAddedStudent.length >= 1) {
-    return res.status(401).json({ msg: "Student Email already in use" });
+    return res.status(422).json({ msg: "Student Email already in use" });
   }
   //saving student details in the database
   studentDetails
@@ -108,8 +108,8 @@ module.exports.deleteStudent = async (req, res) => {
   Student.deleteOne({ _id: id }, (err, obj) => {
     if (err)
       return res
-        .status(404)
-        .json({ msg: "unable to find the student with given id" });
+        .status(422)
+        .json({ msg: "Unable to find the student with given id" });
   });
   return res.status(400).json({ msg: "Student deleted Successfully :)" });
 };
@@ -142,7 +142,7 @@ module.exports.addClass = async (req, res) => {
   });
   //if class name already in use
   if (alreadyAddedClass.length >= 1) {
-    return res.status(401).json({ msg: "Class Email already in use" });
+    return res.status(422).json({ msg: "Class Email already in use" });
   }
   //saving the class details in the database
   classDetails

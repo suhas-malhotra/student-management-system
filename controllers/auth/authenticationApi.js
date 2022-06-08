@@ -13,7 +13,7 @@ module.exports.Adminlogin = async (req, res) => {
   });
   //if invalid admin email
   if (admin.length == 0) {
-    return res.status(401).json({ msg: "Admin not found" });
+    return res.status(404).json({ msg: "Admin not found" });
   }
   //if password do not match
   if (admin[0].password !== password) {
@@ -37,7 +37,7 @@ module.exports.Studentlogin = async (req, res) => {
   });
   //if invalid student email
   if (student.length == 0) {
-    return res.status(401).json({ msg: "Student not found" });
+    return res.status(404).json({ msg: "Student not found" });
   }
   //if password do not match
   if (student[0].password !== password) {
@@ -61,7 +61,7 @@ module.exports.Teacherlogin = async (req, res) => {
   });
   //if invalid teacher email
   if (teacher.length == 0) {
-    return res.status(401).json({ msg: "Teacher not found" });
+    return res.status(404).json({ msg: "Teacher not found" });
   }
   //if password do not match
   if (teacher[0].password !== password) {

@@ -10,12 +10,12 @@ module.exports.studentDetails = async (req, res) => {
   });
   //if invalid student ID
   if (student.length == 0) {
-    return res.status(404).json({ msg: "Invalid Student Id" });
+    return res.status(401).json({ msg: "Invalid Student Id" });
   }
   let marks = [];
   //if teacher has not entered the marks yet
   if (student[0].subjects.length == 0) {
-    return res.status(404).json({ msg: "Marks Not entered yet" });
+    return res.status(401).json({ msg: "Marks Not entered yet" });
   }
   for (let i = 0; i < student[0].subjects.length; i++) {
     marks.push(student[0].subjects[i].marks);
