@@ -41,7 +41,7 @@ module.exports.deleteTeacher = async (req, res) => {
     if (err)
       return res
         .status(404)
-        .json({ msg: "unable to find the teacher with given id" });
+        .json({ msg: "Unable to find the teacher with given id" });
   });
   return res.status(400).json({ msg: "Teacher deleted Successfully :)" });
 };

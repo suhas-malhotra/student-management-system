@@ -2,6 +2,9 @@ const { Schema, model } = require("mongoose");
 const SubjectsSchema = new Schema({
   subject: String,
   marks: Number,
+  date: Date,
+  comments: String,
+  scoreCardDate: { type: Date, default: Date.now },
 });
 const studentSchema = new Schema(
   {
