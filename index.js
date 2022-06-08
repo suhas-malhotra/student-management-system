@@ -1,3 +1,6 @@
+const connectDB = require("./database/db");
+//connect mongoDB database to the backend server
+connectDB();
 const express = require("express");
 const app = express();
 const bodyparser = require("body-parser");
@@ -18,6 +21,9 @@ app.get("/", (req, res) => {
 app.get("/*", (req, res) => {
   return res.status(401).json({ message: "Route does not exist :(" });
 });
+
+
+
 const port = 80 || process.env.PORT;
 
 app.listen(port, () => {
