@@ -5,42 +5,45 @@ const router = express.Router();
 
 //Admin(Teacher) API
 
-// API 
+// API
 // Adding teacher by admin
 //API Working
 router.post("/teacher", verifyTokenAdmin, adminAPI.addTeacher);
 
-// API 
+// API
 // delete teacher by admin
 //API Working
-router.post("/teacher/:teacherId", verifyTokenAdmin, adminAPI.deleteTeacher);
+router.delete("/teacher/:teacherId", verifyTokenAdmin, adminAPI.deleteTeacher);
 
-// API 
+// API
 // All Teachers
 //API Working
-router.post("/allteachers", verifyTokenAdmin, adminAPI.allTeacher);
+router.get("/allteachers", verifyTokenAdmin, adminAPI.allTeacher);
 
 //Admin(Student) API
 
-// API 
+// API
 // Adding student by admin
 //API Working
 router.post("/student", verifyTokenAdmin, adminAPI.addStudent);
 
-// API 
+// API
 // Deleting student by admin
 //API Working
-router.post("/student/:studentId", verifyTokenAdmin, adminAPI.deleteStudent);
+router.delete("/student/:studentId", verifyTokenAdmin, adminAPI.deleteStudent);
 
-// API 
+// API
 // Displaying all student by admin
 //API Working
-router.post("/allstudents", verifyTokenAdmin, adminAPI.allStudent);
+router.get("/allstudents", verifyTokenAdmin, adminAPI.allStudent);
 
 //Admin(Class) API
+//Adding a class
+//API Working
 router.post("/class", verifyTokenAdmin, adminAPI.addClass);
 
 //Adding Teacher to Class API
+//API Working
 router.post(
   "/teacher/:teacherId/class/:classId",
   verifyTokenAdmin,
@@ -48,9 +51,11 @@ router.post(
 );
 
 //Adding Students to class API
+//API Working
 router.post(
-    "/student/:studentId/class/:classId",
-    verifyTokenAdmin,
-    adminAPI.addStudentToClass
-  );
+  "/student/:studentId/class/:classId",
+  verifyTokenAdmin,
+  adminAPI.addStudentToClass
+);
+
 module.exports = router;
